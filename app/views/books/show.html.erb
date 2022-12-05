@@ -25,6 +25,11 @@
           <% end %>
         </tr>
       </table>
+      <% if current_user.following?(user) %>
+          <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete %>
+      <% else %>
+           <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+      <% end %>
       
       <%= render "book_comments/index", book: @book %>
       <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
